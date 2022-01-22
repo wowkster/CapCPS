@@ -1,11 +1,10 @@
 plugins {
-    id "net.minecraftforge.gradle.forge" version "6f5327"
-    id "org.spongepowered.mixin" version "d5f9873d60"
+    id "net.minecraftforge.gradle.forge" version "6f53277"
 }
 
 version = "0.0.1"
-group = "mynameisjeff.templatemod"
-archivesBaseName = "TemplateMod"
+group = "com.wowkster.capcps"
+archivesBaseName = "CapCPS"
 
 sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
 
@@ -18,13 +17,10 @@ minecraft {
     runDir = "run"
     mappings = "stable_22"
     makeObfSourceJar = false
-    clientRunArgs += "--tweakClass org.spongepowered.asm.launch.MixinTweaker"
-    clientRunArgs += "--mixin mixins.templatemod.json"
 }
 
 repositories {
     mavenCentral()
-    maven { url "https://repo.spongepowered.org/repository/maven-public/" }
 }
 
 configurations {
@@ -32,52 +28,9 @@ configurations {
     implementaton.extendsFrom(packageLib)
 }
 
-
-dependencies {
-    // you may put jars on which you depend on in ./libs
-    // or you may define them like so..
-    //compile "some.group:artifact:version:classifier"
-    //compile "some.group:artifact:version"
-
-    // real examples
-    //compile "com.mod-buildcraft:buildcraft:6.0.8:dev"  // adds buildcraft to the dev env
-    //compile "com.googlecode.efficient-java-matrix-library:ejml:0.24" // adds ejml to the dev env
-
-    // the "provided" configuration is for optional dependencies that exist at compile-time but might not at runtime.
-    //provided "com.mod-buildcraft:buildcraft:6.0.8:dev"
-
-    // the deobf configurations:  "deobfCompile" and "deobfProvided" are the same as the normal compile and provided,
-    // except that these dependencies get remapped to your current MCP mappings
-    //deobfCompile "com.mod-buildcraft:buildcraft:6.0.8:dev"
-    //deobfProvided "com.mod-buildcraft:buildcraft:6.0.8:dev"
-
-    // for more info...
-    // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
-    // http://www.gradle.org/docs/current/userguide/dependency_management.html
-    packageLib("org.spongepowered:mixin:0.7.11-SNAPSHOT") {
-        exclude module: 'guava'
-        exclude module: 'commons-io'
-        exclude module: 'gson'
-    }
-    annotationProcessor("org.spongepowered:mixin:0.7.11-SNAPSHOT")
-}
-
-mixin {
-    add sourceSets.main, "mixins.templatemod.refmap.json"
-}
-
 jar {
 
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-
-    manifest.attributes(
-            "FMLCorePluginContainsFMLMod": true,
-            "ForceLoadAsMod": true,
-            "MixinConfigs": "mixins.templatemod.json",
-            "ModSide": "CLIENT",
-            "TweakClass": "org.spongepowered.asm.launch.MixinTweaker",
-            "TweakOrder": "0",
-    )
 
     from {
         configurations.packageLib.collect { it.isDirectory() ? it : zipTree(it) }

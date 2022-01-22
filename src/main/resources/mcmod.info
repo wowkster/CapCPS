@@ -1,14 +1,14 @@
 [
   {
-    "modid": "templatemod",
-    "name": "TemplateMod",
-    "description": "",
+    "modid": "capcps",
+    "name": "CapCPS",
+    "description": "Cap your CPS at any predetermined value",
     "version": "${version}",
     "mcversion": "${mcversion}",
-    "url": "https://github.com/My-Name-Is-Jeff/basic-mixin-template",
+    "url": "https://github.com/wowkster/CapCPS",
     "updateUrl": "",
-    "authorList": ["My-Name-Is-Jeff"],
-    "credits": "",
+    "authorList": ["Wowkster"],
+    "credits": "Mellomelt",
     "logoFile": "",
     "screenshots": [],
     "dependencies": []
